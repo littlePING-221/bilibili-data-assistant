@@ -18,7 +18,8 @@ headers = {
     'sec-fetch-dest': 'empty',
     'referer': 'https://member.bilibili.com/v2',
     'accept-language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh-TW;q=0.7,zh;q=0.6',
-    'cookie': "CURRENT_FNVAL=****; _uuid=****; buvid3=****; DedeUserID=****; bili_jct=****; SESSDATA=****",# 将****替换为自己的cookie值
+    # 将****替换为自己的cookie值
+    'cookie': "CURRENT_FNVAL=****; _uuid=****; buvid3=****; DedeUserID=****; bili_jct=****; SESSDATA=****",
 }
 
 params = (
@@ -37,11 +38,9 @@ except FileNotFoundError:
 
 while(1):
     print('running...')
-    response = requests.get(
-        'https://member.bilibili.com/x/web/archives', headers=headers, params=params)
+    response = requests.get('https://member.bilibili.com/x/web/archives', headers=headers, params=params)
 
     # print(response.text) #str类型的Jason格式数据
-
     result = json.loads(response.text)
 
     together = []  # 将要转换为DataFrame的列表，其中元素为字典
@@ -60,12 +59,7 @@ while(1):
              'like': data['stat']['like'],
              'reply': data['stat']['reply']})
         together.append(t)
-
     df = DataFrame(together)  # 某一时刻的所有视频的数据的DataFrame
-
-    time_series = time_series.append(
-        Series([df], [time.time()]))  # 将该时刻的DataFrame加入时间序列中
-
+    time_series = time_series.append(Series([df], [time.time()]))  # 将该时刻的DataFrame加入时间序列中
     time_series.to_pickle('time_series.pkl')  # 保存时间序列
-
     time.sleep(1800)  # 延迟半小时
