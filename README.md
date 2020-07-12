@@ -87,5 +87,6 @@ B站up主的好助手。记录所有自己投稿稿件的各类历史数据(播�
 
 ---
 > 第一次在GitHub上发布repository。有任何问题欢迎讨论。
+遇图片加载等网络问题可移步[码云](https://gitee.com/littlePING/bilibili-data-assistant/tree/master)
 
 > 欢迎关注[我们的B站](http://lizhiping.top/jump.html)：三个半理工男 + 半个艺术生 = kaleidoscopeTech 科技万花筒
